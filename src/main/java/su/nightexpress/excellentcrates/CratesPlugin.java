@@ -14,6 +14,7 @@ import su.nightexpress.excellentcrates.dialog.CrateDialogs;
 import su.nightexpress.excellentcrates.editor.EditorManager;
 import su.nightexpress.excellentcrates.hologram.HologramManager;
 import su.nightexpress.excellentcrates.hooks.impl.PlaceholderHook;
+import su.nightexpress.excellentcrates.hooks.impl.VaultUnlockedHook;
 import su.nightexpress.excellentcrates.key.KeyManager;
 import su.nightexpress.excellentcrates.opening.OpeningManager;
 import su.nightexpress.excellentcrates.opening.ProviderRegistry;
@@ -118,6 +119,8 @@ public class CratesPlugin extends NightPlugin {
             PlaceholderHook.setup(this);
         }
 
+        VaultUnlockedHook.setup(this);
+
         this.loadCommands();
         this.proceedAddons(CratesAddon::onLoad);
     }
@@ -138,6 +141,8 @@ public class CratesPlugin extends NightPlugin {
         if (Plugins.hasPlaceholderAPI()) {
             PlaceholderHook.shutdown();
         }
+
+        VaultUnlockedHook.shutdown();
 
         CratesRegistries.clear();
         ProviderRegistry.clear();

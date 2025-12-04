@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.api.cost.CostType;
 import su.nightexpress.excellentcrates.crate.cost.type.impl.EcoCostType;
+import su.nightexpress.excellentcrates.crate.cost.type.impl.VaultUnlockedCostType;
 import su.nightexpress.excellentcrates.crate.effect.CrateEffect;
 import su.nightexpress.excellentcrates.crate.effect.impl.*;
 import su.nightexpress.nightcore.bridge.registry.NightRegistry;
@@ -20,6 +21,7 @@ public class CratesRegistries {
     public static void load(@NotNull CratesPlugin plugin) {
         registerDefaultEffects();
         registerCostType(new EcoCostType(plugin));
+        registerCostType(new VaultUnlockedCostType(plugin));
     }
 
     private static void registerDefaultEffects() {

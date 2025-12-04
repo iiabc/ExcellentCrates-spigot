@@ -34,6 +34,7 @@ public class CrateDialogs extends AbstractManager<CratesPlugin> {
     public static final Holder<CostEntryCreationDialog>   COST_ENTRY_CREATION   = new Holder<>();
     public static final Holder<KeyCostOptionsDialog>      KEY_COST_OPTIONS      = new Holder<>();
     public static final Holder<CurrencyCostOptionsDialog> CURRENCY_COST_OPTIONS = new Holder<>();
+    public static final Holder<VaultUnlockedCostOptionsDialog> VAULT_UNLOCKED_COST_OPTIONS = new Holder<>();
     public static final Holder<RewardCreationDialog>      REWARD_CREATION       = new Holder<>();
     public static final Holder<RewardSortingDialog>       REWARD_SORTING        = new Holder<>();
     public static final Holder<RewardPreviewDialog>       REWARD_PREVIEW        = new Holder<>();
@@ -69,6 +70,7 @@ public class CrateDialogs extends AbstractManager<CratesPlugin> {
         this.register(COST_ENTRY_CREATION, CostEntryCreationDialog::new);
         this.register(KEY_COST_OPTIONS, () -> new KeyCostOptionsDialog(this.plugin));
         this.register(CURRENCY_COST_OPTIONS, CurrencyCostOptionsDialog::new);
+        this.register(VAULT_UNLOCKED_COST_OPTIONS, VaultUnlockedCostOptionsDialog::new);
         this.register(REWARD_CREATION, () -> new RewardCreationDialog(this.plugin));
         this.register(REWARD_SORTING, RewardSortingDialog::new);
         this.register(REWARD_PREVIEW, RewardPreviewDialog::new);
