@@ -86,4 +86,8 @@ public interface Reward extends Writeable {
     @NotNull Set<String> getRequiredPermissions();
 
     void setRequiredPermissions(@NotNull Set<String> requiredPermissions);
+
+    boolean isMilestoneResetter();
+
+    void setMilestoneResetter(boolean resetter);
 }

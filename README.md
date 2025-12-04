@@ -27,6 +27,7 @@
 - [**Custom Previews**](https://nightexpressdev.com/excellentcrates/crates/previews/). Create custom and unique preview GUI for every crate!
 - [**Custom Openings**](https://nightexpressdev.com/excellentcrates/crates/openings/). Crate custom and unique opening GUI for every crate!
 - [**Milestones**](https://nightexpressdev.com/excellentcrates/crates/milestones/). Reward players for opening certain amount of a crate in a row!
+- Pity Reset. Flag any reward to reset milestone progress if it drops before the guaranteed milestone is reached.
 - Mass Open. Open all your crate keys in a single click!
 - [**Open Cooldown**](https://nightexpressdev.com/excellentcrates/crates/open-cooldown/). Set per player open cooldown for a crate!
 - [**Open Cost**](https://nightexpressdev.com/excellentcrates/crates/open-cost/). Set per player currency cost to open a crate!

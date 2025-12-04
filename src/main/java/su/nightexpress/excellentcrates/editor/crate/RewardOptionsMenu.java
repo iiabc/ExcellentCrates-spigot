@@ -105,6 +105,13 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
         .appendClick("Click to edit")
         .build();
 
+    private static final IconLocale LOCALE_MILESTONE_RESET = LangEntry.iconBuilder("Editor.Button.Reward.MilestoneReset")
+        .name("Milestone Reset")
+        .appendCurrent("State", GENERIC_STATE).br()
+        .appendInfo("When enabled, winning this reward resets", "milestone progress before pity hits.").br()
+        .appendClick("Click to toggle")
+        .build();
+
     public static final IconLocale LOCALE_DELETE = LangEntry.iconBuilder("Editor.Button.Reward.Delete").accentColor(SOFT_RED)
         .name("Delete Reward")
         .appendInfo("Permanently deletes the reward.").br()
@@ -230,6 +237,15 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.getLimits().isEnabled())))
             .toMenuItem().setSlots(15).setHandler((viewer1, event) -> {
                 CrateDialogs.REWARD_LIMITS.ifPresent(dialog -> dialog.show(player, reward, flush));
+            }).build()
+        );
+
+        viewer.addItem(NightItem.fromType(Material.RECOVERY_COMPASS).localized(LOCALE_MILESTONE_RESET)
+            .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.isMilestoneResetter())))
+            .toMenuItem().setSlots(16).setHandler((viewer1, event) -> {
+                reward.setMilestoneResetter(!reward.isMilestoneResetter());
+                crate.markDirty();
+                this.runNextTick(flush);
             }).build()
         );
 

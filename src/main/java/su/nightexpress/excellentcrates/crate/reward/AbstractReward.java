@@ -32,6 +32,7 @@ public abstract class AbstractReward implements Reward {
     protected double      weight;
     protected Rarity      rarity;
     protected boolean     broadcast;
+    protected boolean     milestoneResetter;
     protected LimitValues limits;
     protected Set<String> ignoredPermissions;
     protected Set<String> requiredPermissions;
@@ -45,6 +46,7 @@ public abstract class AbstractReward implements Reward {
         this.setRarity(rarity);
         this.setPreview(ItemHelper.vanilla(CrateUtils.getQuestionStack()));
         this.setBroadcast(false);
+        this.setMilestoneResetter(false);
         this.setLimits(LimitValues.unlimited());
         this.setIgnoredPermissions(new HashSet<>());
         this.setRequiredPermissions(new HashSet<>());
@@ -71,6 +73,7 @@ public abstract class AbstractReward implements Reward {
         this.setPreview(ItemHelper.readOrPlaceholder(config, path + ".PreviewData"));
         this.setWeight(config.getDouble(path + ".Weight", -1D));
         this.setBroadcast(config.getBoolean(path + ".Broadcast"));
+        this.setMilestoneResetter(config.getBoolean(path + ".Milestones.Reset_On_Win"));
         this.setLimits(LimitValues.read(config, path + ".Limits"));
         this.setIgnoredPermissions(config.getStringSet(path + ".Ignored_For_Permissions"));
         this.setRequiredPermissions(config.getStringSet(path + ".Required_Permissions"));
@@ -85,6 +88,7 @@ public abstract class AbstractReward implements Reward {
         config.set(path + ".Weight", this.weight);
         config.set(path + ".Rarity", this.rarity.getId());
         config.set(path + ".Broadcast", this.broadcast);
+        config.set(path + ".Milestones.Reset_On_Win", this.milestoneResetter);
         config.set(path + ".Limits", this.limits);
         config.set(path + ".Ignored_For_Permissions", this.ignoredPermissions);
         config.set(path + ".Required_Permissions", this.requiredPermissions);
@@ -256,6 +260,16 @@ public abstract class AbstractReward implements Reward {
     @Override
     public void setBroadcast(boolean broadcast) {
         this.broadcast = broadcast;
+    }
+
+    @Override
+    public boolean isMilestoneResetter() {
+        return this.milestoneResetter;
+    }
+
+    @Override
+    public void setMilestoneResetter(boolean resetter) {
+        this.milestoneResetter = resetter;
     }
 
     @NotNull

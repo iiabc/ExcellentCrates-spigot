@@ -127,10 +127,21 @@ public abstract class AbstractOpening implements Opening {
             }
 
             if (crate.hasMilestones()) {
-                userData.addMilestones(1);
-                plugin.getCrateManager().triggerMilestones(player, crate, userData.getMilestone());
-                if (userData.getMilestone() >= crate.getMaxMilestone() && crate.isMilestonesRepeatable()) {
+                int maxMilestones = crate.getMaxMilestone();
+                int currentMilestones = userData.getMilestone();
+                boolean rewardResetsProgress = this.rewards.stream().anyMatch(Reward::isMilestoneResetter);
+
+                boolean canResetBeforeGuarantee = maxMilestones > 0 && currentMilestones < maxMilestones;
+
+                if (rewardResetsProgress && canResetBeforeGuarantee) {
                     userData.setMilestone(0);
+                }
+                else {
+                    userData.addMilestones(1);
+                    plugin.getCrateManager().triggerMilestones(player, crate, userData.getMilestone());
+                    if (userData.getMilestone() >= maxMilestones && crate.isMilestonesRepeatable() && maxMilestones > 0) {
+                        userData.setMilestone(0);
+                    }
                 }
             }
 
